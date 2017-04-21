@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+<p>请输入</p>
+<form action="/add/" method="get">
+    address1: <input type="text" id="color" name="address1" placeholder="请输入图片网址" value=""> <br>
+    address2: <input type="text" id="number" name="address2" placeholder="请输入图片网址" value=""> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum'>提交</button>
+</form>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#sum").click(function(){
+        var color = $("#color").val();
+        var number = $("#number").val();
+        	$('#result').html('');
+        	$('#result').append("<img src= "+ color +">");
+        	$('#result').append("<img src= "+ number +">");
+
+        //王
+
+        
+        $.get("{% url 'get-pic' %}", {'color':color,'number':number}, function(ret){
+        
+        
+            
+            $.each(ret, function(index, item){
+                $('#result').append("<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1492748923333&di=5557cd2d304fe445adb42ee901574592&imgtype=0&src=http%3A%2F%2Fdiscovery.cctv.com%2F20070110%2Fimages%2F1168410690211_b4_r.jpg'>");
+            })
+        })
+      });
+    });
+</script>
+</body>
+</html>
+
